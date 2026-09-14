@@ -4,8 +4,26 @@ import { FeedbackService } from './feedback.service';
 
 @Controller('feedback')
 export class FeedbackController {
-  constructor(private readonly service: FeedbackService) {}
-  @Get() findAll() { return this.service.findAll(); }
-  @Post() create(@Body() dto: CreateFeedbackDto) { return this.service.create(dto); }
-  @Patch(':id/status') cycleStatus(@Param('id') id: string) { return this.service.cycleStatus(id); }
+  constructor(private readonly service: FeedbackService) { }
+  
+  @Get()
+  findAll() {
+    return this.service.findAll();
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return this.service.findById(id)
+  }
+
+  @Post()
+  create(@Body() dto: CreateFeedbackDto) {
+    return this.service.create(dto);
+  }
+  
+  @Patch(':id/status')
+  cycleStatus(@Param('id') id: string) {
+    return this.service.cycleStatus(id);
+  }
+
 }
